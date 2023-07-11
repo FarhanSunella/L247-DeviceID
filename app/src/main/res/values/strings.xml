@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">L24 - Device ID</string>
+    <string name="nomor_perusahaan">Nomor Perusahaan</string>
+    <string name="edit_text">Edit Text</string>
+    <string name="popup">Popup</string>
+    <string name="ok">Ok</string>
+    <string name="masukan_kode_kantor_anda">Masukan Kode Kantor Anda</string>
+    <string name="kode_kantor">Kode Kantor</string>
+    <string name="submit">Submit</string>
+</resources>
