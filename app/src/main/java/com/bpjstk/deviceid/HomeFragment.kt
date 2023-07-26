@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.content.ClipboardManager
 import android.os.Bundle
 import android.provider.Settings
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,8 +15,12 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.bpjstk.deviceid.session.AppConstans.key_email
+import com.bpjstk.deviceid.session.RegisPreferences
 
 class HomeFragment : Fragment() {
+
+    private var session: RegisPreferences? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,15 +43,16 @@ class HomeFragment : Fragment() {
         btn_1?.setOnClickListener {
             val message: String = edittext?.text.toString().trim()
             if (message.isEmpty()) {
-                Toast.makeText(requireContext(), "Kode Kantor Tidak Boleh Kosong", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    requireContext(),
+                    "Kode Kantor Tidak Boleh Kosong",
+                    Toast.LENGTH_SHORT
+                ).show()
             } else {
                 showCustomDialogBox(message)
             }
         }
     }
-
-
-
 
 
     private fun showCustomDialogBox(message: String) {

@@ -1,6 +1,7 @@
 package com.bpjstk.deviceid
 
 import android.app.DatePickerDialog
+import android.app.ProgressDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -10,6 +11,17 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.core.content.ContextCompat.startActivity
+import com.bpjstk.deviceid.session.AppConstans
+import com.bpjstk.deviceid.session.AppConstans.key_alamat
+import com.bpjstk.deviceid.session.AppConstans.key_email
+import com.bpjstk.deviceid.session.AppConstans.key_handphone
+import com.bpjstk.deviceid.session.AppConstans.key_konpassword
+import com.bpjstk.deviceid.session.AppConstans.key_nama
+import com.bpjstk.deviceid.session.AppConstans.key_password
+import com.bpjstk.deviceid.session.AppConstans.key_tanggal
+import com.bpjstk.deviceid.session.AppConstans.key_tempat
+import com.bpjstk.deviceid.session.RegisPreferences
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -19,7 +31,6 @@ import java.util.Calendar
 class RegistrasiActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var btnIntent: Button
     private lateinit var dateEdt: EditText
-    private lateinit var RegisEmail: EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,8 +38,8 @@ class RegistrasiActivity : AppCompatActivity(), View.OnClickListener {
 
         btnIntent = findViewById(R.id.btn_regis)
         btnIntent.setOnClickListener(this)
-        RegisEmail = findViewById(R.id.RegisEmail)
-        dateEdt = findViewById(R.id.RegisTanggalLahir)
+
+        dateEdt = findViewById(R.id.RegisTanggal)
         dateEdt.setOnClickListener {
             val c = Calendar.getInstance()
             val year = c.get(Calendar.YEAR)
@@ -51,48 +62,50 @@ class RegistrasiActivity : AppCompatActivity(), View.OnClickListener {
                 val RegisPassword: EditText = findViewById(R.id.RegisPassword)
                 val RegisKonPassword: EditText = findViewById(R.id.RegisKonPassword)
                 val RegisNama: EditText = findViewById(R.id.RegisNama)
-                val RegisTempatLahir: EditText = findViewById(R.id.RegisTempatLahir)
-                val RegisTanggalLahir: EditText = findViewById(R.id.RegisTanggalLahir)
+                val RegisTempat: EditText = findViewById(R.id.RegisTempat)
+                val RegisTanggal: EditText = findViewById(R.id.RegisTanggal)
                 val RegisHandphone: EditText = findViewById(R.id.RegisHandphone)
                 val RegisAlamat: EditText = findViewById(R.id.RegisAlamat)
                 btn_regis.setOnClickListener {
                     val regis1: String = RegisEmail.text.toString().trim()
-                    val regis2: String = RegisPassword.text.toString().trim()
-                    val regis3: String = RegisKonPassword.text.toString().trim()
-                    val regis4: String = RegisNama.text.toString().trim()
-                    val regis5: String = RegisTempatLahir.text.toString().trim()
-                    val regis6: String = RegisTanggalLahir.text.toString().trim()
-                    val regis7: String = RegisHandphone.text.toString().trim()
-                    val regis8: String = RegisAlamat.text.toString().trim()
+                    val regis2: String = RegisNama.text.toString().trim()
+                    val regis3: String = RegisTempat.text.toString().trim()
+                    val regis4: String = RegisTanggal.text.toString().trim()
+                    val regis5: String = RegisHandphone.text.toString().trim()
+                    val regis6: String = RegisAlamat.text.toString().trim()
+                    val regis7: String = RegisPassword.text.toString().trim()
+                    val regis8: String = RegisKonPassword.text.toString().trim()
+
 
                     if (regis1.isEmpty() || regis2.isEmpty() || regis3.isEmpty() || regis4.isEmpty() || regis5.isEmpty() || regis6.isEmpty() || regis7.isEmpty() || regis8.isEmpty()) {
                         Toast.makeText(this, "Tidak Boleh Kosong", Toast.LENGTH_SHORT).show()
-                        return@setOnClickListener
                     }
-                    if (regis2 != regis3) {
-                        Toast.makeText(this, "Konfirmasi Password", Toast.LENGTH_SHORT).show()
-                        CoroutineScope(Dispatchers.Main).launch {
-                            delay(1000)
-//                            val intent4 = Intent(this@RegistrasiActivity, Profile::class.java)
-//                            intent4.putExtra("NAMA", regis4)
-//                            startActivity(intent4)
-//
-//                            val intent5 = Intent(this@RegistrasiActivity, Profile::class.java)
-//                            intent5.putExtra("TEMPAT", regis5)
-//                            startActivity(intent5)
-//
-//                            val intent6 = Intent(this@RegistrasiActivity, Profile::class.java)
-//                            intent6.putExtra("TANGGAL", regis6)
-//                            startActivity(intent6)
-//
-//                            val intent7 = Intent(this@RegistrasiActivity, Profile::class.java)
-//                            intent7.putExtra("HANDPHONE", regis7)
-//                            startActivity(intent7)
-//
-//                            val intent8 = Intent(this@RegistrasiActivity, Profile::class.java)
-//                            intent8.putExtra("ALAMAT", regis8)
-//                            startActivity(intent8)
+
+                    val validPass = RegisPreferences.getString(this, AppConstans.key_password, "")
+                    if (regis7 == validPass && regis8 == validPass) {
+                        val progressDialog = ProgressDialog(this)
+                        progressDialog.isIndeterminate = true
+                        progressDialog.setMessage("Loading...")
+                        progressDialog.show()
+                        Toast.makeText(this, "Registrasi Berhasil", Toast.LENGTH_SHORT).show()
+                        val intent = Intent(this, LoginActivity::class.java)
+                        startActivity(intent)
+                        finish()
                         }
+                    if(regis7 != regis8){
+                        Toast.makeText(this, "Konfirmasi Password", Toast.LENGTH_SHORT).show()
+                    }
+
+                    if (regis1.isNotEmpty() && regis2.isNotEmpty() && regis3.isNotEmpty() && regis4.isNotEmpty() && regis5.isNotEmpty() && regis6.isNotEmpty() && regis7.isNotEmpty() && regis8.isNotEmpty()) {
+                        RegisPreferences.saveString(this, key_email, regis1)
+                        RegisPreferences.saveString(this, key_nama, regis2)
+                        RegisPreferences.saveString(this, key_tempat, regis3)
+                        RegisPreferences.saveString(this, key_tanggal, regis4)
+                        RegisPreferences.saveString(this, key_handphone, regis5)
+                        RegisPreferences.saveString(this, key_alamat, regis6)
+                        RegisPreferences.saveString(this, key_password, regis7)
+                        RegisPreferences.saveString(this, key_konpassword, regis8)
+
                     }
                 }
             }

@@ -10,6 +10,9 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContentProviderCompat.requireContext
+import com.bpjstk.deviceid.session.AppConstans
+import com.bpjstk.deviceid.session.RegisPreferences
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -45,7 +48,9 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                         return@setOnClickListener
 
                     }
-                    if (message == "admin@gmail.com" && messagee == "admin") {
+                    val email = RegisPreferences.getString(this, AppConstans.key_email, "")
+                    val password = RegisPreferences.getString(this, AppConstans.key_password, "")
+                    if (message == email  && messagee == password) {
                         val progressDialog = ProgressDialog(this)
                         progressDialog.isIndeterminate = true
                         progressDialog.setMessage("Loading...")
@@ -53,9 +58,9 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                         CoroutineScope(Dispatchers.Main).launch {
                             delay(1000)
                             progressDialog.hide()
-                            val intent1 = Intent(this@LoginActivity, MainActivity::class.java)
-                            intent1.putExtra("EXTRA_EMAIL", message)
-                            startActivity(intent1)
+                            val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                            intent.putExtra("EXTRA_EMAIL", message)
+                            startActivity(intent)
                             finish()
                         }
                     } else {
@@ -65,9 +70,8 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             }
 
             R.id.registrasi -> {
-                val intent3 = Intent(this, RegistrasiActivity::class.java)
-                startActivity(intent3)
-                finish()
+                val intent = Intent(this, RegistrasiActivity::class.java)
+                startActivity(intent)
             }
         }
     }

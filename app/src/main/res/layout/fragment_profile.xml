@@ -32,7 +32,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginHorizontal="5dp"
         android:layout_toRightOf="@+id/tvTanggal"
-        android:text="Farhan Sunella Putra"
+        android:text=""
         android:textSize="20sp" />
 
     <TextView
@@ -55,7 +55,7 @@
         android:layout_marginLeft="15dp"
         android:layout_marginTop="10dp"
         android:layout_toRightOf="@+id/tvTanggal"
-        android:text="Padang"
+        android:text=""
         android:textSize="20sp" />
 
     <TextView
@@ -78,11 +78,11 @@
         android:layout_marginLeft="15dp"
         android:layout_marginTop="10dp"
         android:layout_toRightOf="@+id/tvTanggal"
-        android:text="30 Desember 2023"
+        android:text=""
         android:textSize="20sp" />
 
     <TextView
-        android:id="@+id/tvNoHp"
+        android:id="@+id/tvHandphone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginVertical="340dp"
@@ -93,14 +93,14 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/textNoHp"
+        android:id="@+id/textHandphone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="5dp"
         android:layout_marginVertical="340dp"
         android:layout_marginTop="10dp"
         android:layout_toRightOf="@+id/tvTanggal"
-        android:text="082287152447"
+        android:text=""
         android:textSize="20sp" />
 
     <TextView
@@ -122,7 +122,7 @@
         android:layout_marginVertical="390dp"
         android:layout_marginTop="10dp"
         android:layout_toRightOf="@+id/tvTanggal"
-        android:text="Jln Rawa Bahagia Raya No 46 RT007 RW02 Grogol Jakart Barat"
+        android:text=""
         android:textSize="20sp" />
 
     <Button
@@ -132,7 +132,7 @@
         android:layout_marginHorizontal="100dp"
         android:layout_marginVertical="490dp"
         android:padding="10dp"
-        android:text="Exit"
+        android:text="Logout"
         android:textColor="@color/white"
         android:textSize="25sp"/>
 
