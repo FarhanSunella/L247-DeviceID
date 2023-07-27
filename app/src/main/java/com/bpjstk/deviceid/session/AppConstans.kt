@@ -10,4 +10,6 @@ object AppConstans {
     const val key_password = "key_password"
     const val key_konpassword = "key_konpassword"
 
+    const val key_login = "key_login"
+
 }

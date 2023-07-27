@@ -15,6 +15,7 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.bpjstk.deviceid.session.AppConstans
 import com.bpjstk.deviceid.session.AppConstans.key_email
 import com.bpjstk.deviceid.session.RegisPreferences
 
@@ -36,7 +37,7 @@ class HomeFragment : Fragment() {
         val btn_1 = view?.findViewById<Button>(R.id.btn_1)
         val edittext = view?.findViewById<EditText>(R.id.edittext)
         val textEmail = view?.findViewById<TextView>(R.id.textEmail)
-        val email = arguments?.getString("EXTRA_EMAIL")
+        val email = RegisPreferences.getString(requireContext(), AppConstans.key_email, "")
         val hasilEmail = "$email"
         textEmail?.text = hasilEmail
 
