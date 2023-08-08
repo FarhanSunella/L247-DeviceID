@@ -12,4 +12,7 @@ object AppConstans {
 
     const val key_login = "key_login"
 
+    const val key_foto = "key_kamera"
+    const val key_galeri = "key_galeri"
+
 }

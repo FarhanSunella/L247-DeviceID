@@ -5,13 +5,10 @@ import android.app.ProgressDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.ContactsContract
-import android.util.Patterns
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import androidx.core.content.ContextCompat.startActivity
 import com.bpjstk.deviceid.session.AppConstans
 import com.bpjstk.deviceid.session.AppConstans.key_alamat
 import com.bpjstk.deviceid.session.AppConstans.key_email
@@ -22,10 +19,6 @@ import com.bpjstk.deviceid.session.AppConstans.key_password
 import com.bpjstk.deviceid.session.AppConstans.key_tanggal
 import com.bpjstk.deviceid.session.AppConstans.key_tempat
 import com.bpjstk.deviceid.session.RegisPreferences
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 import java.util.Calendar
 
 class RegistrasiActivity : AppCompatActivity(), View.OnClickListener {

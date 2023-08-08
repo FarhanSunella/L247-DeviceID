@@ -1,6 +1,7 @@
 package com.bpjstk.deviceid.session
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.preference.PreferenceManager
 
 object  RegisPreferences {
