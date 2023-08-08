@@ -50,8 +50,6 @@ class ProfileFragment : Fragment(), View.OnClickListener {
     private val CAMERA_REQUEST_CODE = 1
     private val GALLERY_REQUEST_CODE = 2
 
-    lateinit var photoPath: String
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -327,23 +325,7 @@ class ProfileFragment : Fragment(), View.OnClickListener {
         }
         return result
     }
-
-//    fun getPath(context: Context, bitmap: Bitmap?): String {
-//        var result: String? = null
-//        val proj = arrayOf(MediaStore.Images.Media.DATA)
-//        val cursor = context.contentResolver.query(bitmap!!, proj, null, null, null)
-//        if (cursor != null) {
-//            if (cursor.moveToFirst()) {
-//                val column_index = cursor.getColumnIndexOrThrow(proj[0])
-//                result = cursor.getString(column_index)
-//            }
-//            cursor.close()
-//        }
-//        if (result == null) {
-//            result = "Not found"
-//        }
-//        return result
-//    }
+    
 
     fun getImageFile(image: String) : Bitmap {
         val imgFile = File(image)
